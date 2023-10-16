@@ -14,15 +14,17 @@ namespace Lab5
             Product product1 = new Product("SKU12345", 30, "Android", "Смартфон", 25000, false, "Европа");
             Service service = new Service(2, "380151666138", "Массаж", "Массаж Спины", 250, true, "Приморский");
             Logistics logistics = new Logistics("Поезд", "Киев", "Одесса", "Консоль", 3600, true, "Киев");
+            Logistics logistics1 = new Logistics("Самолет", "Лондон", "Одесса", "Компьютер", 22000, true, "Лондон");
 
-            BusinessInfo businessCommerce = new BusinessInfo();
+            Commerce businessCommerce = new Commerce();
 
             businessCommerce.AddBusiness(product);
             businessCommerce.AddBusiness(product1);
             businessCommerce.AddBusiness(service);
             businessCommerce.AddBusiness(logistics);
+            businessCommerce.AddBusiness(logistics1);
 
-            foreach (var business in businessCommerce.BusinessCommerce)
+            foreach (var business in businessCommerce.BusinessInfo)
             {
                 Console.WriteLine(business);
             }
@@ -30,7 +32,7 @@ namespace Lab5
             Console.WriteLine("\n----------------------------------------\n");
             Console.WriteLine("\nУдаление первого элемента массива:");
             businessCommerce.DeleteBusiness(0);
-            foreach (var business in businessCommerce.BusinessCommerce)
+            foreach (var business in businessCommerce.BusinessInfo)
             {
                 Console.WriteLine(business);
 
@@ -41,9 +43,9 @@ namespace Lab5
 
             service.Rating = 5;
             logistics.DestinationLocation = "Прага";
-            businessCommerce.EditBusiness(1, product1);
+            businessCommerce.EditBusiness(3, product1);
 
-            foreach (var business in businessCommerce.BusinessCommerce)
+            foreach (var business in businessCommerce.BusinessInfo)
             {
                 Console.WriteLine(business);
             }
