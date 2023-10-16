@@ -12,11 +12,11 @@ namespace Lab5
         {
             Product product = new Product("prd-001", 400, "Apple", "Ноутбук", 20000, true, "Америка");
             Product product1 = new Product("SKU12345", 30, "Android", "Смартфон", 25000, false, "Европа");
-            Service service = new Service(2, "380151666138", "Массаж", "Массаж Спины", 250, true, "Приморский");
+            Service service = new Service(2, "vladpashenko@gmai.com", "Массаж", "Массаж Спины", 250, true, "Приморский");
             Logistics logistics = new Logistics("Поезд", "Киев", "Одесса", "Консоль", 3600, true, "Киев");
             Logistics logistics1 = new Logistics("Самолет", "Лондон", "Одесса", "Компьютер", 22000, true, "Лондон");
 
-            Commerce businessCommerce = new Commerce();
+            TradingServices businessCommerce = new TradingServices();
 
             businessCommerce.AddBusiness(product);
             businessCommerce.AddBusiness(product1);

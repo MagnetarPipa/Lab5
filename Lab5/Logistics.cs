@@ -3,22 +3,23 @@
 namespace Lab5
 {
     /// <summary>
-    /// Класс Loqistics,содержащий свойства Logistics и наследующий класс BusinessInfo
+    /// Класс Loqistics,содержащий свойства Logistics и наследующий класс Commerce
     /// </summary>
-    internal class Logistics : BusinessInfo
+    internal class Logistics : Commerce
     {
         private string _transportType;
         private string _departureLocation;
         private string _destinationLocation;
 
         /// <summary>
-        /// Сеттер и геттер поля _transportType
+        /// Сеттер и геттер поля _transportType в котором хранится тип транспорта
         /// </summary>
         public string TransportType
         {
             get => _transportType;
             set
             {
+                //Идет проверка является указанная строка является строкой null или пустой строкой (""). 
                 if (!string.IsNullOrEmpty(value))
                 {
                     _transportType = value.Trim();
@@ -31,13 +32,14 @@ namespace Lab5
         }
 
         /// <summary>
-        /// Сеттер и геттер поля _departureLocation
+        /// Сеттер и геттер поля _departureLocation в котором хранится место отбытия транспорта
         /// </summary>
         public string DepartureLocation
         {
             get => _departureLocation;
             set
             {
+                //Идет проверка является указанная строка является строкой null или пустой строкой (""). 
                 if (!string.IsNullOrEmpty(value))
                 {
                     _departureLocation = value.Trim();
@@ -50,13 +52,14 @@ namespace Lab5
         }
 
         /// <summary>
-        /// Сеттер и геттер поля _destinationLocation
+        /// Сеттер и геттер поля _destinationLocation в котором хранится место доставки
         /// </summary>
         public string DestinationLocation
         {
             get => _destinationLocation;
             set
             {
+                //Идет проверка является указанная строка является строкой null или пустой строкой (""). 
                 if (!string.IsNullOrEmpty(value))
                 {
                     _destinationLocation = value.Trim();
@@ -69,7 +72,7 @@ namespace Lab5
         }
 
         /// <summary>
-        /// Создает новый экземпляр класса Logistics и наследует свойства BusinessInfo.
+        /// Создает новый экземпляр класса Logistics и наследует свойства Commerce.
         /// </summary>
         /// <param name="transportType">Транспорт который будет везти товар</param>
         /// <param name="departureLocation">Место отправления со склада</param>

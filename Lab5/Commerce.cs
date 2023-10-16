@@ -3,61 +3,104 @@
 namespace Lab5
 {
     /// <summary>
-    ///  Класс Commerce общую информацию об бизнесах, а так же содержит массив который хранит различные услуги или товары.
+    /// Базовый класс Commerce содержащий общую информацию об коммерции
     /// </summary>
     internal class Commerce
     {
-        
-        private BusinessInfo[] _business;
 
-        public Commerce()
-        {
-            _business = new BusinessInfo[0];
-        }
+        private string _name;
+        private double _price;
+        private bool _isAvailable;
+        private string _location;
 
         /// <summary>
-        /// Добавление объекта в массив.
+        /// Сеттер и геттер поля _name в котором хранится название товарной услуги
         /// </summary>
-        /// <param name="business">Экземпляр класса BusinessInfo или производных от него классов.</param>
-        public void AddBusiness(BusinessInfo business)
+        public string Name
         {
-            Array.Resize(ref _business, _business.Length + 1);
-            _business[_business.Length - 1] = business;
-        }
-
-
-        /// <summary>
-        /// Удаление объекта из массива.
-        /// </summary>
-        /// <param name="personId">Индекс элемента который необходимо удалить.</param>
-        public void DeleteBusiness(int businessId)
-        {
-            if (businessId >= 0 && businessId < _business.Length)
+            get => _name;
+            set
             {
-                Array.Copy(_business, businessId + 1, _business, businessId, _business.Length - businessId - 1);
-                Array.Resize(ref _business, _business.Length - 1);
+                //Идет проверка является указанная строка является строкой null или пустой строкой ("").
+                if (!string.IsNullOrEmpty(value))
+                {
+                    _name = value.Trim();
+                }
+                else
+                {
+                    throw new FormatException("Неправильное название");
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Сеттер и геттер поля _price в котором хранится цена 
+        /// </summary>
+        public double Price
+        {
+            get => _price;
+            set
+            {
+                //Идет проверка является ли значение отрицательным,тк цена не может быть таковой.
+                if (value >= 0)
+                {
+                    _price = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Цена не может быть отрицательной.");
+                }
+
             }
         }
 
         /// <summary>
-        /// Редактирование элемента массива заменой одного на переданный новый.
+        /// Сеттер и геттер поля _isAvailable в котором хранится наличие товара(true-товар есть в наличии,false-товар закончился).
         /// </summary>
-        /// <param name="index">Индекс заменяемого элемента.</param>
-        /// <param name="element">Новый отредактированый элемент.</param>
-        public void EditBusiness(uint index, BusinessInfo element)
+        public bool IsAvailable { get => _isAvailable; set => _isAvailable = value; }
+
+        /// <summary>
+        /// Сеттер и геттер поля _location в котором хранится местонахождение товарной услуги.
+        /// </summary>
+        public string Location
         {
-            if (index >= 0 && index < _business.Length)
+            get => _location;
+            set
             {
-                _business[index] = element;
+                //Идет проверка является указанная строка является строкой null или пустой строкой ("").
+                if (!string.IsNullOrEmpty(value))
+                {
+
+                    _location = value.Trim();
+                }
+                else
+                {
+                    throw new FormatException("Неверная локация");
+                }
             }
-            else
-            {
-                throw new FormatException("Такого идекса в массиве не существует");
-            }
+
         }
-        
-        public BusinessInfo[] BusinessInfo => _business;
+
+        /// <summary>
+        ///  Создает новый экземпляр класса Commerce с заданными значениями.
+        /// </summary>
+        /// <param name="name">Название комерческих услуг и т.д.</param>
+        /// <param name="price">Цена</param>
+        /// <param name="isAvailable">Наличие</param>
+        /// <param name="location">Местонахождение</param>
+        public Commerce(string name, double price, bool isAvailable, string location)
+        {
+            Name = name;
+            Price = price;
+            IsAvailable = isAvailable;
+            Location = location;
+        }
 
 
+        public override string ToString()
+        {
+            return $"Название: {Name};\nЦена: {Price};\nНаличие:{IsAvailable};\nАдресс: {Location};";
+        }
     }
 }

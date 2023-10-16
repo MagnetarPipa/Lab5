@@ -3,9 +3,9 @@
 namespace Lab5
 {
     /// <summary>
-    /// Класс Product,содержащий свойства Product и наследующий класс BusinessInfo
+    /// Класс Product,содержащий свойства Product и наследующий класс Commerce
     /// </summary>
-    internal class Product : BusinessInfo
+    internal class Product : Commerce
     {
 
         private string _productID;
@@ -17,14 +17,15 @@ namespace Lab5
         private const byte MAX_ID_LENGHT = 20;
 
         /// <summary>
-        /// Сеттер и геттер поля _productID
+        /// Сеттер и геттер поля _productID в котором храниться ID товара
         /// </summary>
         public string ProductID
         {
             get => _productID;
             set
             {
-
+                // Идет проверка является указанная строка является строкой null или пустой строкой("")
+                // и на то что длина ID не превышает 20 символов или не меньше 5. 
                 if (!string.IsNullOrEmpty(value) && value.Length >= MIN_ID_LENGHT && value.Length <= MAX_ID_LENGHT)
                 {
                     _productID = (value.ToUpper()).Trim();
@@ -37,13 +38,14 @@ namespace Lab5
         }
 
         /// <summary>
-        /// Сеттер и геттер поля _stockQuantity
+        /// Сеттер и геттер поля _stockQuantity в котором храниться количество товара на складе
         /// </summary>
         public int StockQuantity
         {
             get => _stockQuantity;
             set
             {
+                //Проверка на то что количество товара не меньше нуля или больше вместимости склада(500).
                 if (value >= MIN_QUANTITY && value <= MAX_QUANTITY)
                 {
                     _stockQuantity = value;
@@ -56,7 +58,7 @@ namespace Lab5
         }
 
         /// <summary>
-        /// Сеттер и геттер поля _manufacturer
+        /// Сеттер и геттер поля _manufacturer в котором хранится название производителя товара
         /// </summary>
         public string Manufacturer
         {
@@ -64,6 +66,7 @@ namespace Lab5
             get => _manufacturer;
             set
             {
+                // Идет проверка является указанная строка является строкой null или пустой строкой("")
                 if (!string.IsNullOrEmpty(value))
                 {
 
@@ -77,7 +80,7 @@ namespace Lab5
         }
 
         /// <summary>
-        ///  Создает новый экземпляр класса Product и наследует свойства BusinessInfo.
+        ///  Создает новый экземпляр класса Product и наследует свойства Commerce.
         /// </summary>
         /// <param name="productID">ID товара</param>
         /// <param name="stockQuantity">Количество товара на складе</param>
